@@ -1,0 +1,76 @@
+{% extends '_layouts/cp' %}
+
+{% set title = 'Ten4 Site Setup'|t %}
+
+{% set content %}
+
+<img src="http://www.placecage.com/gif/300/300" alt="Nic Cage" title="It's so easy now!" class="cage">
+
+{#
+This doesn't actually get the database character set, turns out it's pretty difficult to do that :(
+
+{% set db_encoding = craft.ten4SiteSetup.dbCharset() %}
+{% if db_encoding == 'utf8mb4' %}
+	<p class="db-notice">Your database encoding is <code>utf8mb4</code>. This is <span class="correct">correct</span>!</p>
+{% else %}
+	<p class="db-notice">Your database encoding is <code>{{ db_encoding }}</code>. This is <span class="incorrect">incorrect</span>; it should be <code>utf8mb4</code>.</p>
+	<p class="db-notice">How will the client feel when emojis destroy their website?</p>
+{% endif %}
+<hr>
+#}
+
+<form method="post" action="" accept-charset="UTF-8">
+	<input type="hidden" name="action" value="ten4SiteSetup/cleanInstall">
+	<input type="hidden" name="redirect" value="ten4SiteSetup">
+	<input type="button" class="btn submit formsubmit" value="1. Remove all existing content" data-confirm="This will delete everything, even if you created it. Are you sure?">
+</form>
+<hr>
+<form method="post" action="" accept-charset="UTF-8">
+	<input type="hidden" name="action" value="ten4SiteSetup/addSeoFields">
+	<input type="hidden" name="redirect" value="ten4SiteSetup">
+	<input type="submit" class="btn submit" value="2. Create SEO fields + globals">
+</form>
+<hr>
+<form method="post" action="" accept-charset="UTF-8">
+	<input type="hidden" name="action" value="ten4SiteSetup/createAssetsSource">
+	<input type="hidden" name="redirect" value="ten4SiteSetup">
+	<input type="submit" class="btn submit" value="3. Create an assets folder">
+</form>
+<hr>
+<form method="post" accept-charset="UTF-8">
+	<input type="hidden" name="action" value="plugins/uninstallPlugin">
+	<input type="hidden" name="redirect" value="settings/plugins">
+	<input type="hidden" name="pluginClass" value="Ten4SiteSetup">
+	<input type="submit" class="btn submit" value="4. Uninstall this plugin">
+</form>
+
+{% endset %}
+
+{% includecss %}
+
+.cage {
+	float: right;
+}
+
+.btn.submit {
+	display: block;
+	margin: 0 auto;
+	font-size: 200%;
+	height: auto;
+}
+
+.db-notice {
+	font-size: 140%;
+	text-align: center;
+}
+.db-notice code {
+	color: #999;
+}
+.db-notice .correct {
+	color: #33ff33;
+}
+.db-notice .incorrect {
+	color: #ff3333;
+}
+
+{% endincludecss %}
