@@ -69,6 +69,23 @@ class Ten4SiteSetupService extends BaseApplicationComponent
 
 	public function createAssetSource()
 	{
+
+		if( !file_exists( './uploads' ) )
+		{
+			if( !mkdir( './uploads', 0777 ) )
+			{
+				throw new Exception( 'Failed to create /uploads directory.' );
+			}
+		}
+
+		if( !file_exists( './uploads/images' ) )
+		{
+			if( !mkdir( './uploads/images', 0777 ) )
+			{
+				throw new Exception( 'Failed to create /uploads/images directory.' );
+			}
+		}
+
 		$group = new FieldGroupModel();
 		$group->name = 'Assets';
 
