@@ -137,7 +137,7 @@ class Ten4SiteSetupService extends BaseApplicationComponent
 		$source->handle = 'images';
 		$source->settings = array(
 			'path' => '{fileSystemPath}uploads/images/',
-			'url' => '{siteUrl}uploads/images/'
+			'url' => '{uploadsUrl}images/'
 		);
 		$source->setFieldLayout( $alt_text_layout );
 
