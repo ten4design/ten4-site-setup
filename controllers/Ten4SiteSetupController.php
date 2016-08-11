@@ -29,6 +29,13 @@ class Ten4SiteSetupController extends BaseController
 				craft()->tags->deleteTagGroupById( $id );
 			}
 
+			// Delete all global sets
+			$all_global_set_ids = craft()->globals->getAllSetIds();
+			foreach( $all_global_set_ids as $id )
+			{
+				craft()->globals->deleteSetById( $id );
+			}
+
 			craft()->userSession->setNotice( 'All content removed!' );
 		}
 		catch( Exception $e )
