@@ -23,10 +23,10 @@ class Ten4SiteSetupController extends BaseController
 			}
 
 			// Delete all tag groups
-			$all_tag_groups = craft()->tags->getAllTagGroups();
-			foreach( $all_tag_groups as $tag_group )
+			$all_tag_group_ids = craft()->tags->getAllTagGroupIds();
+			foreach( $all_tag_group_ids as $id )
 			{
-				craft()->tags->deleteTagGroupById( $tag_group->id );
+				craft()->tags->deleteTagGroupById( $id );
 			}
 
 			craft()->userSession->setNotice( 'All content removed!' );
