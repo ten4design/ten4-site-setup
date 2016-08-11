@@ -47,11 +47,6 @@ class Ten4SiteSetupService extends BaseApplicationComponent
 			$global_field_layout_field
 		) );
 
-		if( !craft()->fields->saveLayout( $global_layout ) )
-		{
-			throw new Exception( 'Failed to create SEO global field layout.' );
-		}
-
 		$global_set = new GlobalSetModel();
 		$global_set->name = 'SEO';
 		$global_set->handle = 'seo';
@@ -126,11 +121,6 @@ class Ten4SiteSetupService extends BaseApplicationComponent
 		$alt_text_layout->setFields( array(
 			$alt_text_field_layout_field
 		) );
-
-		if( !craft()->fields->saveLayout( $alt_text_layout ) )
-		{
-			throw new Exception( 'Failed to create alt-text field layout.' );
-		}
 
 		$source = new AssetSourceModel();
 		$source->name = 'Images';
